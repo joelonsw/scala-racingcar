@@ -1,9 +1,9 @@
 package racingcar.controller
 
-import racingcar.domain.{Car, NumberGenerator}
+import racingcar.domain.{Car, MoveDecisionMaker}
 import racingcar.view.View
 
-class Controller(val numberGenerator: NumberGenerator) {
+class Controller(val moveDecisionMaker: MoveDecisionMaker) {
 
   def play(): Unit = {
     val initialCars: List[Car] = initiateCars()
@@ -27,7 +27,7 @@ class Controller(val numberGenerator: NumberGenerator) {
   }
 
   private def proceedRound(cars: List[Car]): List[Car] = {
-    val afterRound: List[Car] = cars.map((car: Car) => car.move(numberGenerator.generate))
+    val afterRound: List[Car] = cars.map(_.move(moveDecisionMaker))
     View.announceRoundResult(afterRound)
     afterRound
   }
