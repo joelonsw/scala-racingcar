@@ -1,5 +1,9 @@
 package racingcar
 
+import racingcar.controller.Controller
+import racingcar.domain.RandomNumberGenerator
+
 object Application extends App {
-  println("Hello!")
+  val controller = new Controller(new RandomNumberGenerator)
+  controller.play()
 }
